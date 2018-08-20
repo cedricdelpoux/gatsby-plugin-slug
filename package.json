@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-slug",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Add a custom slug field to remark nodes",
   "repository": "https://github.com/xuopled/gatsby-plugin-slug",
   "author": "Cédric Delpoux",
