@@ -47,7 +47,7 @@ slug: my-custom-slug
 3. Use the `slug` field for the `path` key when you create a new page in you `gatsby-node.js`:
 
 ```js
-const postTemplate = path.resolve("./src/templates/post.js")
+const blogPostTemplate = path.resolve("./src/templates/post.js")
 
 exports.createPages = ({graphql, boundActionCreators}) => {
     const {createPage} = boundActionCreators
