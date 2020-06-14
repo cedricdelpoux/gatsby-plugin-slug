@@ -1,33 +1,42 @@
 {
   "name": "gatsby-plugin-slug",
-  "version": "1.0.1",
-  "description": "Add a custom slug field to remark nodes",
-  "repository": "https://github.com/xuopled/gatsby-plugin-slug",
+  "version": "1.1.0",
+  "description": "Add slug field to MarkdownRemark and Mdx nodes",
+  "repository": "https://github.com/cedricdelpoux/gatsby-plugin-slug",
   "author": "Cédric Delpoux",
   "license": "MIT",
   "private": false,
-  "keywords": ["gatsby", "gatsby-plugin", "remark", "slug", "url", "custom"],
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "remark",
+    "slug",
+    "url",
+    "custom"
+  ],
   "main": "index.js",
-  "dependencies": {
-    "parse-filepath": "^1.0.2"
-  },
+  "files": [
+    "gatsby-node.js",
+    "index.js"
+  ],
+  "dependencies": {},
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "cross-env": "^5.1.5",
-    "eslint": "^5.3.0",
-    "eslint-config-prettier": "^3.0.1",
-    "husky": "^1.0.0-rc.13",
-    "lint-staged": "^7.2.2",
-    "prettier": "1.14.2"
-  },
-  "peerDependencies": {
-    "gatsby": ">2.0.0-alpha"
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "husky": "^4.2.1",
+    "lint-staged": "^10.0.7",
+    "prettier": "1.19.1"
   },
   "scripts": {
-    "build": "cross-env BABEL_ENV=production babel src --out-dir .",
-    "lint": "eslint --ext .js src",
-    "prepublishOnly": "yarn build"
+    "lint": "eslint *.js"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint"
+    ],
+    "*.{css,js,md}": [
+      "prettier --write"
+    ]
   },
   "husky": {
     "hooks": {

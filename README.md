@@ -1,5 +1,7 @@
 # gatsby-plugin-slug
 
+Add slug field to `MarkdownRemark` and `Mdx` nodes
+
 [![npm package][npm-badge]][npm]
 
 By default gatsby generate url by following directories structure.
@@ -12,7 +14,7 @@ For example, the following directory structure generate path url `mysite.com/201
     ↳ my-first-post
 ```
 
-With the same directory structure using `gatsby-plugin-slug`, you can add a custom slug field to remark nodes to have custom urls like `mysite.com/super-post`
+With the same directory structure using `gatsby-plugin-slug`, you can add a custom slug field to `MarkdownRemark` and `Mdx` nodes to have custom urls like `mysite.com/super-post`
 
 ## Getting started
 
@@ -32,11 +34,11 @@ npm install gatsby-plugin-slug --save
 
 ```js
 module.exports = {
-    plugins: ["gatsby-plugin-slug"],
+  plugins: ["gatsby-plugin-slug"],
 }
 ```
 
-2. Add `slug` field in the frontmatter of your markdown files:
+2. (Optional) Add `slug` field in the frontmatter of your markdown files:
 
 ```md
 ---
@@ -50,37 +52,35 @@ slug: my-custom-slug
 const blogPostTemplate = path.resolve("./src/templates/post.js")
 
 exports.createPages = ({graphql, boundActionCreators}) => {
-    const {createPage} = boundActionCreators
-    return new Promise((resolve, reject) => {
-        resolve(
-            graphql(
-                `
+  const {createPage} = boundActionCreators
+  return new Promise((resolve, reject) => {
+    resolve(
+      graphql(
+        `
           {
             posts: allMarkdownRemark() {
-              edges {
-                node {
-                  fields {
-                    slug
-                  }
+              nodes {
+                fields {
+                  slug
                 }
               }
             }
           }
         `
-            ).then(result => {
-                const posts = result.data.posts.edges
-                posts.forEach(post => {
-                    createPage({
-                        path: post.node.fields.slug,
-                        component: blogPostTemplate,
-                        context: {
-                            slug: post.node.fields.slug,
-                        },
-                    })
-                })
-            })
-        )
-    })
+      ).then(result => {
+        const posts = result.data.posts.nodes
+        posts.forEach(post => {
+          createPage({
+            path: post.fields.slug,
+            component: blogPostTemplate,
+            context: {
+              slug: post.fields.slug,
+            },
+          })
+        })
+      })
+    )
+  })
 }
 ```
 
@@ -90,30 +90,30 @@ exports.createPages = ({graphql, boundActionCreators}) => {
 import React from "react"
 
 const PostTemplate = ({data: {post}}) => (
-    <div>
-        <h1>{post.title}</h1>
-        <div dangerouslySetInnerHTML={{__html: post.html}} />
-    </div>
+  <div>
+    <h1>{post.title}</h1>
+    <div dangerouslySetInnerHTML={{__html: post.html}} />
+  </div>
 )
 
 export default PostTemplate
 
 export const pageQuery = graphql`
-    query PostBySlug($slug: String!) {
-        post: markdownRemark(fields: {slug: {eq: $slug}}) {
-            html
-            frontmatter {
-                title
-            }
-        }
+  query PostBySlug($slug: String!) {
+    post: markdownRemark(fields: {slug: {eq: $slug}}) {
+      html
+      frontmatter {
+        title
+      }
     }
+  }
 `
 ```
 
 ## Contributing
 
--   ⇄ Pull/Merge requests and ★ Stars are always welcome.
--   For bugs and feature requests, please [create an issue][github-issue].
+- ⇄ Pull/Merge requests and ★ Stars are always welcome.
+- For bugs and feature requests, please [create an issue][github-issue].
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) guidelines
 
