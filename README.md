@@ -1,8 +1,16 @@
-# gatsby-plugin-slug
+<div align="center">
+  <h1>gatsby-plugin-slug</h1>
 
-Add slug field to `MarkdownRemark` and `Mdx` nodes
+[![Npm version][badge-npm]][npm]
+[![Npm downloads][badge-npm-dl]][npm]
+[![MIT license][badge-licence]](./LICENCE.md)
+[![PRs welcome][badge-prs-welcome]](#contributing)
 
-[![npm package][npm-badge]][npm]
+</div>
+
+---
+
+Add slug field to `MarkdownRemark` and `Mdx` nodes.
 
 By default gatsby generate url by following directories structure.
 
@@ -17,8 +25,6 @@ For example, the following directory structure generate path url `mysite.com/201
 With the same directory structure using `gatsby-plugin-slug`, you can add a custom slug field to `MarkdownRemark` and `Mdx` nodes to have custom urls like `mysite.com/super-post`
 
 ## Getting started
-
-[![gatsby-plugin-slug](https://nodei.co/npm/gatsby-plugin-slug.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gatsby-plugin-slug/)
 
 You can download `gatsby-plugin-slug` from the NPM registry via the
 `npm` or `yarn` commands
@@ -67,9 +73,9 @@ exports.createPages = ({graphql, boundActionCreators}) => {
             }
           }
         `
-      ).then(result => {
+      ).then((result) => {
         const posts = result.data.posts.nodes
-        posts.forEach(post => {
+        posts.forEach((post) => {
           createPage({
             path: post.fields.slug,
             component: blogPostTemplate,
@@ -126,6 +132,9 @@ See [CHANGELOG.md](./CHANGELOG.md)
 This project is licensed under the MIT License - see the
 [LICENCE.md](./LICENCE.md) file for details
 
-[npm-badge]: https://img.shields.io/npm/v/gatsby-plugin-slug.svg?style=flat-square
+[badge-npm]: https://img.shields.io/npm/v/gatsby-plugin-slug.svg?style=flat-square
+[badge-npm-dl]: https://img.shields.io/npm/dt/gatsby-plugin-slug.svg?style=flat-square
+[badge-licence]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
+[badge-prs-welcome]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 [npm]: https://www.npmjs.org/package/gatsby-plugin-slug
 [github-issue]: https://github.com/xuopled/gatsby-plugin-slug/issues/new
