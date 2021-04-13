@@ -1,7 +1,7 @@
 const path = require("path")
 
-exports.onCreateNode = ({node, getNode, boundActionCreators}) => {
-  const {createNodeField} = boundActionCreators
+exports.onCreateNode = ({node, getNode, actions}) => {
+  const {createNodeField} = actions
   const fileNode = getNode(node.parent)
 
   if (
