@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-slug",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "Add slug field to MarkdownRemark and Mdx nodes",
   "repository": "https://github.com/cedricdelpoux/gatsby-plugin-slug",
   "author": "Cédric Delpoux",
